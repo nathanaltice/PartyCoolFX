@@ -16,8 +16,9 @@ class GravityFlow extends Phaser.Scene {
 
     create() {
         // create a 💀 PARTICLE DEATH ZONE 💀
-        this.deathZone = new Phaser.Geom.Circle(0, 0, 50);
-        // init graphics to draw DEATH ZONE
+        this.deathZone = new Phaser.Geom.Circle(0, 0, 100);
+        
+        // init graphics to draw DEATH ZONE (in update)
         this.gfx = this.add.graphics();
 
         // set up particle emitter
@@ -35,14 +36,33 @@ class GravityFlow extends Phaser.Scene {
             deathZone: { type: 'onEnter', source: this.deathZone }
         });
 
-        // add mouse input listener for movable death zone
+        this.deathEmitter = this.particleManager.createEmitter({
+            speed: 50,
+            scale: { start: 0.75, end: 0.1 },
+            // angle: { min: 0, max: 360, steps: 32 }, // uncomment for fun spirals
+            alpha: { start: 1, end: 0 },
+            quantity: 250,
+            lifespan: 750,
+            emitZone: { type: 'edge', source: this.deathZone, quantity: 250 },
+            tint: 0xFFFF00,
+            on: false
+        });
+
+        // add mouse move listener for movable death zone
         this.input.on('pointermove', (pointer) => {
             this.deathZone.x = pointer.x;
             this.deathZone.y = pointer.y;
         });
+        // add mouse input listener to invert death zone type and fire particles
+        this.input.on('pointerdown', (pointer) => {
+            // toggle death zone
+            this.gravityEmitter.deathZone.killOnEnter ? this.gravityEmitter.deathZone.killOnEnter = false : this.gravityEmitter.deathZone.killOnEnter = true; 
+            // fire death particles
+            this.particleManager.emitParticleAt(pointer.x, pointer.y);
+        });
 
         // update instruction text (with delicious Vanilla JavaShrek)
-        document.getElementById('description').innerHTML = '<strong>EmitterConfig.js:</strong> Move mouse to control 💀 PARTICLE DEATH ZONE 💀 // \'S\': Next Scene, \'R\': Restart Scene';
+        document.getElementById('description').innerHTML = '<strong>GravityFlow.js:</strong> Move mouse to control 💀 PARTICLE DEATH ZONE 💀, click to invert // \'S\': Next Scene, \'R\': Restart Scene';
 
         // keyboard input
         cursors = this.input.keyboard.createCursorKeys();
@@ -55,7 +75,7 @@ class GravityFlow extends Phaser.Scene {
     update() {
         // draw DEATH ZONE
         this.gfx.clear();
-        this.gfx.lineStyle(1, 0xFACADE, 1);
+        this.gfx.lineStyle(1, 0xFFFF00, 1);
         this.gfx.strokeCircleShape(this.deathZone);
 
         // scene switching / restart
