@@ -33,7 +33,7 @@ class EmitterConfig extends Phaser.Scene {
         // create dummy sprite to control emitter position
         this.dummy = this.add.sprite(centerX, centerY);
 
-        // update instruction text (with delicious Vanilla JavaShrek)
+        // update instruction text
         document.getElementById('description').innerHTML = '<strong>EmitterConfig.js:</strong> Use arrows to move emitter // \'S\': Next Scene, \'R\': Restart Scene';
 
         // keyboard input
@@ -66,7 +66,7 @@ class EmitterConfig extends Phaser.Scene {
             this.scene.restart();
         }
         if(Phaser.Input.Keyboard.JustDown(this.swap)) {
-            //this.scene.start("tiledPlatformScene");
+            this.scene.start("gravityflowScene");
         }
     }
 }

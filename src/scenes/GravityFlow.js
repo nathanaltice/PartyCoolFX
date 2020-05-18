@@ -1,11 +1,6 @@
 class GravityFlow extends Phaser.Scene {
     constructor() {
         super('gravityflowScene');
-
-        // settings
-        this.SPEED = 300;
-        this.SPEEDMIN = 50;
-        this.SPEEDMAX = 800;
     }
 
     preload() {
@@ -61,11 +56,8 @@ class GravityFlow extends Phaser.Scene {
             this.particleManager.emitParticleAt(pointer.x, pointer.y);
         });
 
-        // update instruction text (with delicious Vanilla JavaShrek)
+        // update instruction text
         document.getElementById('description').innerHTML = '<strong>GravityFlow.js:</strong> Move mouse to control 💀 PARTICLE DEATH ZONE 💀, click to invert // \'S\': Next Scene, \'R\': Restart Scene';
-
-        // keyboard input
-        cursors = this.input.keyboard.createCursorKeys();
 
         // enable scene switcher / reload keys
         this.swap = this.input.keyboard.addKey('S');
@@ -83,7 +75,7 @@ class GravityFlow extends Phaser.Scene {
             this.scene.restart();
         }
         if(Phaser.Input.Keyboard.JustDown(this.swap)) {
-            //this.scene.start("tiledPlatformScene");
+            this.scene.start("gravitywellsScene");
         }
     }
 }

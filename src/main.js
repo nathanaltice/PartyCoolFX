@@ -12,7 +12,7 @@ let config = {
     type: Phaser.WEBGL, // using WEBGL to do some special FX
     width: 800,
     height: 600,
-    scene: [ GravityFlow, EmitterConfig, Basic ]
+    scene: [ Basic, EmitterConfig, GravityFlow, GravityWells ]
 }
 
 const game = new Phaser.Game(config);
