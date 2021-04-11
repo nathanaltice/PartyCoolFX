@@ -32,12 +32,12 @@ class GravityWells extends Phaser.Scene {
 
         // add mouse input listener to create gravity well(s)
         this.input.on('pointerdown', (pointer) => {
-            // create well
+            // create gravity well
             // "The force applied is inversely proportional to the square of the distance from the particle to the point, in accordance with Newton's law of gravity."
             this.particleManager.createGravityWell({
                 x: pointer.x,
                 y: pointer.y,
-                power: 3,       // strength of grav force (larger = stronger)
+                power: 3,       // strength of gravitational force (larger = stronger)
                 epsilon: 100,   // min. distance for which grav force is calculated
                 gravity: 100    // grav. force of this well (creates "whipping" effect)
             });

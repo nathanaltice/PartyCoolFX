@@ -1,6 +1,6 @@
 // Nathan Altice
 // Created: 5/16/20
-// Updated: 5/16/20
+// Updated: 4/11/21
 // Particle Emitters & Effects
 // Phaser 3 particle effects demos
 
@@ -9,6 +9,7 @@
 
 // define game object
 let config = {
+    parent: 'phaser-game',
     type: Phaser.WEBGL, // using WEBGL to do some special FX
     width: 800,
     height: 600,
