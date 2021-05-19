@@ -7,11 +7,11 @@ class GravityWells extends Phaser.Scene {
         super('gravitywellsScene');
     }
 
-    preload() {
-        // load assets
-        this.load.path = './assets/';
-        this.load.image('cross', 'white_cross.png');
-    }
+    // preload() {
+    //     // load assets
+    //     this.load.path = './assets/';
+    //     this.load.image('cross', 'white_cross.png');
+    // }
 
     create() {
         // init graphics
@@ -65,7 +65,7 @@ class GravityWells extends Phaser.Scene {
             this.scene.restart();
         }
         if(Phaser.Input.Keyboard.JustDown(this.swap)) {
-            this.scene.start("basicScene");
+            this.scene.start("arcadeCollideScene");
         }
     }
 }

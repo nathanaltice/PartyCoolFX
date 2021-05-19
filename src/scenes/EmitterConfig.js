@@ -6,7 +6,7 @@ class EmitterConfig extends Phaser.Scene {
         this.SPEED = 300;
         this.SPEEDMIN = 50;
         this.SPEEDMAX = 800;
-        this.DUMMYSPEED = 5;
+        this.DUMMYSPEED = 200;
     }
 
     preload() {
@@ -31,7 +31,8 @@ class EmitterConfig extends Phaser.Scene {
         });
 
         // create dummy sprite to control emitter position
-        this.dummy = this.add.sprite(centerX, centerY);
+        this.dummy = this.physics.add.sprite(centerX, centerY);
+        this.dummy.body.setCollideWorldBounds(true);
 
         // update instruction text
         document.getElementById('description').innerHTML = '<strong>EmitterConfig.js:</strong> Use arrows to move emitter // \'S\': Next Scene, \'R\': Restart Scene';
@@ -46,17 +47,19 @@ class EmitterConfig extends Phaser.Scene {
 
     update() {
         // control dummy sprite
+        this.dummy.body.setVelocity(0);
+
         if(cursors.down.isDown) {
-            this.dummy.y += this.DUMMYSPEED;
+            this.dummy.body.setVelocityY(this.DUMMYSPEED);
         }
         if(cursors.up.isDown) {
-            this.dummy.y -= this.DUMMYSPEED;
+            this.dummy.body.setVelocityY(-this.DUMMYSPEED);
         }
         if(cursors.right.isDown) {
-            this.dummy.x += this.DUMMYSPEED;
+            this.dummy.body.setVelocityX(this.DUMMYSPEED);
         }
         if(cursors.left.isDown) {
-            this.dummy.x -= this.DUMMYSPEED;
+            this.dummy.body.setVelocityX(-this.DUMMYSPEED);
         }
         // update emitter position
         this.movingEmitter.setPosition(this.dummy.x, this.dummy.y);

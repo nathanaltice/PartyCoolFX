@@ -1,6 +1,6 @@
 // Nathan Altice
 // Created: 5/16/20
-// Updated: 4/11/21
+// Updated: 5/19/21
 // Particle Emitters & Effects
 // Phaser 3 particle effects demos
 
@@ -13,7 +13,15 @@ let config = {
     type: Phaser.WEBGL, // using WEBGL to do some special FX
     width: 800,
     height: 600,
-    scene: [ Basic, EmitterConfig, GravityFlow, GravityWells ]
+    // Note: physics are only used for emitter movement
+    // Phaser particles use their own dedicated physics system
+    physics: {
+        default: 'arcade',
+        arcade: {
+            //debug: true
+        }
+    },
+    scene: [ Basic, EmitterConfig, GravityFlow, GravityWells, ArcadeCollide ]
 }
 
 const game = new Phaser.Game(config);

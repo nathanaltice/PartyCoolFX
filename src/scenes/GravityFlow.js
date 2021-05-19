@@ -21,7 +21,7 @@ class GravityFlow extends Phaser.Scene {
         this.gravityEmitter = this.particleManager.createEmitter({
             x: centerX,
             y: centerY,
-            angle: { min: 180, max: 360 }, // try steps: 1000
+            angle: { min: 180, max: 360 }, // try adding steps: 1000 👍
             speed: { min: 10, max: 500, steps: 5000 },
             gravityY: 350,
             lifespan: 4000,
@@ -34,7 +34,7 @@ class GravityFlow extends Phaser.Scene {
         this.deathEmitter = this.particleManager.createEmitter({
             speed: 50,
             scale: { start: 0.75, end: 0.1 },
-            // angle: { min: 0, max: 360, steps: 32 }, // uncomment for fun spirals
+            //angle: { min: 0, max: 360, steps: 32 },
             alpha: { start: 1, end: 0 },
             quantity: 250,
             lifespan: 750,
