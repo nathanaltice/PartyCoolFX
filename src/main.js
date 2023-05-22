@@ -1,11 +1,11 @@
 // Nathan Altice
 // Created: 5/16/20
-// Updated: 5/19/21
+// Updated: 5/21/23
 // Particle Emitters & Effects
 // Phaser 3 particle effects demos
 
 // de-bong the JavaShrek ogre
-'use strict';
+'use strict'
 
 // define game object
 let config = {
@@ -21,15 +21,15 @@ let config = {
             //debug: true
         }
     },
-    scene: [ Basic, EmitterConfig, GravityFlow, GravityWells, ArcadeCollide ]
+    scene: [ Animated, Basic, MovingEmitter, GravityFlow, GravityWells, ArcadeCollide, ]
 }
 
-const game = new Phaser.Game(config);
+const game = new Phaser.Game(config)
 
 // some globals
-const centerX = game.config.width / 2;
-const centerY = game.config.height / 2;
-const w = game.config.width;
-const h = game.config.height;
+const centerX = game.config.width / 2
+const centerY = game.config.height / 2
+const w = game.config.width
+const h = game.config.height
 
-let cursors = null;
+let cursors = null
