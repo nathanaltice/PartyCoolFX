@@ -21,7 +21,7 @@ let config = {
             //debug: true
         }
     },
-    scene: [ Animated, Basic, MovingEmitter, GravityFlow, GravityWells, ArcadeCollide, ]
+    scene: [ Basic, MovingEmitter, GravityFlow, GravityWells, ArcadeCollide, Animated, MultiEmit ]
 }
 
 const game = new Phaser.Game(config)

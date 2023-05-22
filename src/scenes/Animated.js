@@ -18,7 +18,7 @@ class Animated extends Phaser.Scene {
         // create line for particle emitter source
         let line = new Phaser.Geom.Line(32, 32, 32, h);
 
-        // creating spinning animation
+        // creating animations
         this.anims.create({
             key: 'spin',
             frameRate: 12,
@@ -26,13 +26,25 @@ class Animated extends Phaser.Scene {
             repeat: -1,
             yoyo: true
         })
+        this.anims.create({
+            key: 'pulse',
+            frameRate: 6,
+            frames: this.anims.generateFrameNumbers('items', { start: 0, end: 2 }),
+            repeat: -1,
+            yoyo: true
+        })
 
         this.add.particles(0, 0, 'items', {
-            anim: 'spin',
+            anim: {
+                anims: [ 'spin', 'pulse' ],
+                cycle: true,
+                quantity: 10
+            },
             gravityX: 200,
-            lifespan: 3000,
+            lifespan: 2700,
             scale: { start: 2, end: 2 },
-            emitZone: { type: 'edge', source: line, quantity: 10, yoyo: true }
+            hold: 250,
+            emitZone: { type: 'edge', source: line, quantity: 10, yoyo: true },
         })
 
         // update instruction text
@@ -52,7 +64,7 @@ class Animated extends Phaser.Scene {
             this.scene.restart()
         }
         if(Phaser.Input.Keyboard.JustDown(this.swap)) {
-            this.scene.start("basicScene")
+            this.scene.start("multiemitScene")
         }
     }
 }
