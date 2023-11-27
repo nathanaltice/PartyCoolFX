@@ -1,11 +1,6 @@
 class Basic extends Phaser.Scene {
     constructor() {
         super('basicScene')
-
-        // settings
-        this.SPEED = 300
-        this.SPEEDMIN = 50
-        this.SPEEDMAX = 800
     }
 
     preload() {
@@ -16,6 +11,11 @@ class Basic extends Phaser.Scene {
     }
 
     create() {
+        // settings
+        this.SPEED = 300
+        this.SPEEDMIN = 50
+        this.SPEEDMAX = 800
+
         // create 'minimum viable' particle emitter
         this.add.particles(centerX, centerY, '5x5', { speed: this.SPEED })
 

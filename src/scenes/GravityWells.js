@@ -1,6 +1,5 @@
 // to-do: four emitters, one at each corner
 // mouse click to create gravity wells
-// https://phaser.io/examples/v3/view/game-objects/particle-emitter/gravity-well
 
 class GravityWells extends Phaser.Scene {
     constructor() {
@@ -27,7 +26,12 @@ class GravityWells extends Phaser.Scene {
             lifespan: 5000,
             scale: { start: 1, end: 0.1 },
             tint: [ 0xffff00, 0xff0000, 0x00ff00, 0x00ffff, 0x0000ff ],
-            emitZone: { type: 'edge', source: line, quantity: 100, yoyo: true }
+            emitZone: { 
+                type: 'edge', // also try 'random' for rain-like effect 🌈
+                source: line, 
+                quantity: 100, 
+                yoyo: true,
+            }
         })
 
         // add mouse input listener to create gravity well(s)
@@ -38,8 +42,8 @@ class GravityWells extends Phaser.Scene {
                 x: pointer.x,
                 y: pointer.y,
                 power: 3,       // strength of gravitational force (larger = stronger)
-                epsilon: 100,   // min. distance for which grav force is calculated
-                gravity: 100    // grav. force of this well (creates "whipping" effect) [also try negatives!]
+                epsilon: 100,   // min. distance for which gravitational force is calculated
+                gravity: 100    // gravitational force of this well (creates "whipping" effect) [also try negatives!]
             })
             // draw visual representation of well
             this.gfx.lineStyle(1, 0xFFFF00, 1)

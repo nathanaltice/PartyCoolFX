@@ -7,24 +7,19 @@ class ArcadeCollide extends Phaser.Scene {
         super('arcadeCollideScene')
     }
 
-    // preload() {
-    //     // load assets
-    //     this.load.path = './assets/'
-    //     this.load.image('pixel', 'white_pixel.png')
-    //     this.load.image('5x5', '5x5_white.png')
-    // }
-
     create() {
         // create death zone source
         let bouncingBlockBody = {
+            // contains(x, y) "Check to see if the Polygon contains the given x/y coordinates"
+            // https://newdocs.phaser.io/docs/3.70.0/focus/Phaser.Geom.Polygon-contains
             contains: (x, y) => {
-                // hitTest(x, y) "tests if the coordinates are within this Body"
-                // https://newdocs.phaser.io/docs/3.60.0/Phaser.Physics.Arcade.Body#hitTest 
-                let hit = block.body.hitTest(x, y)
-                if (hit) {
-                    splode(x, y)
+                // hitTest(x, y) "Tests if the coordinates are within this Body"
+                // https://newdocs.phaser.io/docs/3.70.0/Phaser.Physics.Arcade.Body#hitTest
+                let blockHit = block.body.hitTest(x, y)
+                if (blockHit) {
+                    collisionExplosion(x, y)
                 }
-                return hit
+                return blockHit
             }
         }
 
@@ -34,12 +29,16 @@ class ArcadeCollide extends Phaser.Scene {
             gravityY: 400,
             lifespan: 4000,
             blendMode: 'ADD',
-            deathZone: { type: 'onEnter', source: bouncingBlockBody }
+            deathZone: { 
+                type: 'onEnter', 
+                // custom source, see: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/particles/#death-zone
+                source: bouncingBlockBody 
+            }
         })
 
-        // secondary collision explosion
-        let splode = (x, y) => {
-            //console.log(`splode at: ${x}, ${y}`)
+        // particle/block collision explosion
+        let collisionExplosion = (x, y) => {
+            //console.log(`collisionExplosion at: ${x}, ${y}`)
             this.add.particles(x, y, '5x5', {
                 tint: { start: 0xff0000, end: 0xffff00 },
                 scale: { start: 0.75, end: 0.25 },
@@ -61,9 +60,6 @@ class ArcadeCollide extends Phaser.Scene {
 
         // update instruction text
         document.getElementById('description').innerHTML = '<strong>ArcadeCollide.js</strong><br>Just ~vibe~ with the collisions<br>S: Next Scene<br>R: Restart Scene'
-
-        // keyboard input
-        cursors = this.input.keyboard.createCursorKeys()
 
         // enable scene switcher / reload keys
         this.swap = this.input.keyboard.addKey('S')

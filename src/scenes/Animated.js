@@ -18,7 +18,7 @@ class Animated extends Phaser.Scene {
         // create line for particle emitter source
         let line = new Phaser.Geom.Line(32, 32, 32, h);
 
-        // creating animations
+        // create animations
         this.anims.create({
             key: 'spin',
             frameRate: 12,
@@ -34,6 +34,7 @@ class Animated extends Phaser.Scene {
             yoyo: true
         })
 
+        // create particle emitter
         this.add.particles(0, 0, 'items', {
             anim: {
                 anims: [ 'spin', 'pulse' ],
@@ -49,9 +50,6 @@ class Animated extends Phaser.Scene {
 
         // update instruction text
         document.getElementById('description').innerHTML = '<strong>Animated.js</strong><br><em>Look upon the spinning gems and be moved</em><br>S: Next Scene<br>R: Restart Scene'
-
-        // keyboard input
-        cursors = this.input.keyboard.createCursorKeys()
 
         // enable scene switcher / reload keys
         this.swap = this.input.keyboard.addKey('S')

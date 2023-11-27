@@ -4,7 +4,6 @@
 // Particle Emitters & Effects
 // Phaser 3 particle effects demos
 
-// de-bong the JavaShrek ogre
 'use strict'
 
 // define game object

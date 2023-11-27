@@ -1,12 +1,6 @@
 class MovingEmitter extends Phaser.Scene {
     constructor() {
         super('movingemitterScene')
-
-        // settings
-        this.SPEED = 300
-        this.SPEEDMIN = 50
-        this.SPEEDMAX = 800
-        this.DUMMYSPEED = 200
     }
 
     preload() {
@@ -16,8 +10,15 @@ class MovingEmitter extends Phaser.Scene {
     }
 
     create() {
+        // settings
+        this.SPEED = 300
+        this.SPEEDMIN = 50
+        this.SPEEDMAX = 800
+        this.DUMMYSPEED = 200
+
         // create dummy sprite for emitter to follow
-        this.dummy = this.physics.add.sprite(centerX, centerY, '5x5')
+        // note: add '5x5' as third parameter in line below if you want to see the dummy sprite
+        this.dummy = this.physics.add.sprite(centerX, centerY, )
         this.dummy.body.setCollideWorldBounds(true)
 
         // create an emitter
@@ -58,7 +59,6 @@ class MovingEmitter extends Phaser.Scene {
         if(cursors.left.isDown) {
             this.dummy.body.setVelocityX(-this.DUMMYSPEED)
         }
-        //this.movingEmitter.setPosition(this.dummy.x, this.dummy.y)
 
         // scene switching / restart
         if(Phaser.Input.Keyboard.JustDown(this.reload)) {
