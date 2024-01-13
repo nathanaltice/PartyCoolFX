@@ -20,7 +20,8 @@ class GravityFlow extends Phaser.Scene {
         this.gravityEmitter = this.add.particles(centerX, centerY, 'cross', {
             angle: { min: 180, max: 360, }, // try adding steps: 1000 👍
             speed: { min: 10, max: 500, steps: 5000 },
-            gravityY: 350,
+            gravityY: -350,
+            gravityX: 1000,
             lifespan: 4000,
             quantity: 6,
             scale: { start: 0.1, end: 2 },

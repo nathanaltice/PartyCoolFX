@@ -3,6 +3,12 @@ class Basic extends Phaser.Scene {
         super('basicScene')
     }
 
+    init() {
+        this.SPEED = 300
+        this.SPEEDMIN = 50
+        this.SPEEDMAX = 800
+    }
+
     preload() {
         // load assets
         this.load.path = './assets/'
@@ -11,11 +17,6 @@ class Basic extends Phaser.Scene {
     }
 
     create() {
-        // settings
-        this.SPEED = 300
-        this.SPEEDMIN = 50
-        this.SPEEDMAX = 800
-
         // create 'minimum viable' particle emitter
         this.add.particles(centerX, centerY, '5x5', { speed: this.SPEED })
 
